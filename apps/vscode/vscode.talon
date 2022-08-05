@@ -85,6 +85,7 @@ file delete:
     sleep(150ms)
 file open folder: user.vscode("revealFileInOS")
 file reveal: user.vscode("workbench.files.action.showActiveFileInExplorer")
+file revert: user.vscode("workbench.action.files.revert")
 save ugly: user.vscode("workbench.action.files.saveWithoutFormatting")
 
 # Language Features
