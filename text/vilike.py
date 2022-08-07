@@ -42,6 +42,36 @@ class Actions:
         """remove line"""
         remove_line()
 
+    def clip_copy(name: str):
+        """copy to named clipboard"""
+        edit = actions.edit
+        text = edit.selected_text()
+        set_clip(name, text)
+
+    def clip_paste(name: str):
+        """paste from named clipboard"""
+        text = get_clip(name)
+        if text:
+            actions.auto_insert(text)
+
+    def snap_line():
+        """snapshot line"""
+        edit = actions.edit
+        edit.select_line()
+        text = edit.selected_text()
+        set_clip(CLIP_SNAPSHOT, text)
+
+    def restore_line():
+        """restore line from snapshot"""
+        edit = actions.edit
+        text = get_clip(CLIP_SNAPSHOT)
+        if text:
+            edit.delete_line()
+            actions.auto_insert(text)
+
+
+CLIP_SNAPSHOT = "snapshot"
+
 
 _marker = None
 
@@ -53,6 +83,18 @@ def get_marker():
 def set_marker(column: int):
     global _marker
     _marker = column
+
+
+_clips = {}
+
+
+def get_clip(name: str):
+    return _clips.get(name)
+
+
+def set_clip(name: str, text: str):
+    global _clips
+    _clips[name] = text
 
 
 def find_str(char: str):

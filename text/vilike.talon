@@ -24,3 +24,15 @@ pump <user.any_alphanumeric_key>:
 
 remove line:
 	user.remove_line()
+
+clip copy <user.letter>:
+	user.clip_copy(letter)
+
+clip paste <user.letter>:
+	user.clip_paste(letter)
+
+snap line:
+	user.snap_line()
+
+snap restore:
+	user.restore_line()
