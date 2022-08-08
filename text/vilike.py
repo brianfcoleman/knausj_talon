@@ -19,7 +19,7 @@ class Actions:
         if offset > 0:
             go_right(offset)
         elif offset < 0:
-            go_left(offset)
+            go_left(-offset)
         print((marker_column, current_column, offset))
         if current_column > marker_column:
             select_left(current_column - marker_column)
@@ -103,7 +103,7 @@ def find_str(char: str):
     text = edit.selected_text()
     go_left()
     print((text, char))
-    offset = text.find(char) + len(char)
+    offset = text.lower().find(char) + len(char)
     return offset
 
 
@@ -113,7 +113,7 @@ def find_str_back(char: str):
     text = edit.selected_text()
     go_right()
     print((text, char))
-    offset = text.rfind(char)
+    offset = text.lower().rfind(char)
     return len(text) - offset
 
 
